@@ -56,6 +56,7 @@ export default class DayView extends React.Component {
 
   getDaysTitles() {
     return [0, 1, 2, 3, 4, 5, 6].map(i => ({
+      val: moment().weekday(i).format('dd'),
       label: moment()
         .weekday(i)
         .format('dd')
