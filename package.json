@@ -6,7 +6,7 @@
   "version": "0.5.3",
   "scripts": {
     "prepublish": ". ./.scripts/prepublish.sh",
-    "lint": "eslint src",
+    "lint": "./node_modules/.bin/eslint src",
     "lintfix": "eslint src --fix",
     "testonly": "mocha --require .scripts/mocha_runner src/**/tests/**/*.js",
     "test": "npm run lint && npm run testonly",
@@ -29,7 +29,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
     "enzyme": "^2.2.0",
-    "eslint": "^2.7.0",
+    "eslint": "^2.13.1",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-import": "^2.13.0",
