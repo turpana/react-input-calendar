@@ -1,10 +1,16 @@
 import React from 'react'
+import Adapter from 'enzyme-adapter-react-16.1'
+import Enzyme from 'enzyme'
 import { shallow, mount } from 'enzyme'
-import Button from '../index'
+import Calendar from '../index'
+//import Button from '../index'
 import { expect } from 'chai'
 import sinon from 'sinon'
 const { describe, it } = global
 
+Enzyme.configure({ adapter: new Adapter() });
+
+/*
 describe('Button', () => {
   it('should show the given text', () => {
     const text = 'The Text'
@@ -24,5 +30,35 @@ describe('Button', () => {
 
     wrapper.find('button').simulate('click')
     expect(clickMe.callCount).to.be.equal(1)
+  })
+})
+*/
+
+describe('Calendar', () => {
+  it('should trigger an onChange event with the correct date when a form is submitted', () => {
+    let date
+    const onChange = (newDate) => {
+      date = newDate
+    }
+    const initialDate = '01-01-2018'
+    const newDate = '02-02-2018'
+    const wrapper = mount(
+      <div>
+        <form>
+          <Calendar
+            date={initialDate}
+            onChange={onChange}
+          />
+        </form>
+      </div>
+      )
+    const input = wrapper.find('input')
+    //input.instance().value = newDate
+    console.log(' >> simulate change ')
+    input.simulate('change', { target: { value: newDate } } )
+    //console.log(' >> simulate blur ')
+    //input.simulate('blur')
+    wrapper.find('form').simulate('submit')
+    expect(date).to.be.equal(newDate)
   })
 })
